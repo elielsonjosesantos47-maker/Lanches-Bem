@@ -35,6 +35,7 @@
             backdrop-filter: blur(10px);
             z-index: 1000;
             border-bottom: 2px solid var(--primary);
+            <div id="status-loja" style="text-align:center; padding:10px; font-weight:bold;"></div>
         }
 
         .header-container {
@@ -321,7 +322,12 @@
             overlay.style.display = overlay.style.display === 'block' ? 'none' : 'block';
         }
 
-        function enviarWhatsApp() {
+        function enviarWhatsApp()
+        if (!lojaAberta()) {
+    alert("Estamos fechados no momento. Funcionamos das 19h às 23h.");
+    return;
+}
+        {
             const nome = document.getElementById('nome').value;
             const endereco = document.getElementById('endereco').value;
             const contato = document.getElementById('contato').value;
@@ -345,12 +351,34 @@
             const total = carrinho.reduce((sum, item) => sum + (item.preco * item.qtd), 0);
             msg += `\n*TOTAL: R$ ${total.toFixed(2)}*`;
             msg += `\n*Pagamento:* ${pag}`;
+            if (total < VALOR_MINIMO) {
+    alert(`Pedido mínimo é de R$ ${VALOR_MINIMO.toFixed(2).replace('.',',')}`);
+    return;
+}
 
-            const numero = "5582991339255"; // COLOQUE SEU NÚMERO AQUI
+            const numero = "5582991675574"; // COLOQUE SEU NÚMERO AQUI
             window.open(`https://wa.me/${numero}?text=${encodeURIComponent(msg)}`);
         }
 
         renderizar();
+
+        function atualizarStatusLoja() {
+    const statusDiv = document.getElementById("status-loja");
+
+    if (lojaAberta()) {
+        statusDiv.innerHTML = "🟢 Estamos Abertos!";
+        statusDiv.style.background = "#1f8b4c";
+        statusDiv.style.color = "#fff";
+    } else {
+        statusDiv.innerHTML = "🔴 Estamos Fechados. Funcionamos das 19h às 23h.";
+        statusDiv.style.background = "#8b1f1f";
+        statusDiv.style.color = "#fff";
+    }
+}
+
+atualizarStatusLoja();
+        
     </script>
 </body>
+
 </html>
