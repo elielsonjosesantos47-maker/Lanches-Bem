@@ -26,6 +26,30 @@
             padding-top: 150px;
             overflow-x: hidden;
         }
+        /* Estilo para a Logo */
+.logo-img {
+    height: 45px; /* Ajuste a altura conforme sua logo */
+    width: auto;
+    border-radius: 8px;
+}
+
+/* Container para agrupar Instagram e Carrinho */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.insta-link {
+    color: var(--primary);
+    font-size: 1.6rem;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.insta-link:hover {
+    color: #E1306C; /* Cor característica do Instagram */
+}
 
         /* HEADER */
         header {
@@ -35,13 +59,13 @@
             backdrop-filter: blur(10px);
             z-index: 1000;
             border-bottom: 2px solid var(--primary);
-            <div id="status-loja" style="text-align:center; padding:10px; font-weight:bold;"></div>
+
         }
 
         .header-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 15px 20px;
+            padding: 3px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -142,6 +166,7 @@
 <body>
 
     <header>
+        <div id="status-loja" style="text-align:center; padding:5px; font-weight:bold;"></div>
         <div class="header-container">
             <div class="logo"><i class="fa-solid fa-fire"></i> LANCHES BEM</div>
             <div class="cart-icon" onclick="toggleCart()">
@@ -200,48 +225,66 @@
     </aside>
 
     <script>
-        const produtos = [
-            { id: 1, categoria: 'Burgers', nome: 'Topadão Duplo', preco: 52.90, desc: 'Pão brioche, 2 smash 90g, cheddar e bacon.'},
-            { id: 2, categoria: 'Burgers', nome: 'Topadão', preco: 39.90, desc: 'Frango crocante, alface e maionese verde.'},
-            { id: 3, categoria: 'Burgers', nome: 'X - Tudo', preco: 18.90, desc: 'Original 350ml gelada.'},
-            { id: 4, categoria: 'Burgers', nome: 'X - bacon', preco: 18.90, desc: 'Laranja ou Limão 400ml.'},
-            { id: 5, categoria: 'Burgers', nome: 'Queijo Duplo', preco: 18.00, desc: 'pao, hamburgues, presunto.'},
-            { id: 6, categoria: 'Burgers', nome: 'X - Frango', preco: 17.00, desc: 'Pão brioche, 2 smash 90g, cheddar e bacon.'},
-            { id: 7, categoria: 'Burgers', nome: 'X - Calabresa', preco: 17.00, desc: 'Frango crocante, alface e maionese verde.'},
-            { id: 8, categoria: 'Burgers', nome: 'Minuano', preco: 17.00, desc: 'Original 350ml gelada.'},
-            { id: 9, categoria: 'Burgers', nome: 'X - Burguer', preco: 13.00, desc: 'Laranja ou Limão 400ml.'},
-            { id: 10, categoria: 'Burgers', nome: 'Americano', preco: 11.00, desc: 'pao, hamburgues, presunto.'},
-            { id: 11, categoria: 'Burgers', nome: 'Misto Quente', preco: 8.00, desc: 'Frango crocante, alface e maionese verde.'},
-            { id: 12, categoria: 'Burgers Caseiros', nome: 'X - Tudo Caseiro', preco: 22.00, desc: 'Original 350ml gelada.'},
-            { id: 13, categoria: 'Burgers Caseiros', nome: 'X - Bacon Caseiro', preco: 20.00, desc: 'Laranja ou Limão 400ml.'},
-            { id: 14, categoria: 'Burgers Caseiros', nome: 'X - Burguer Caseiro', preco: 16.90, desc: 'pao, hamburgues, presunto.'},
-            { id: 15, categoria: 'Passaportes', nome: 'Passaporte de Carne', preco: 14.00, desc: 'Laranja ou Limão 400ml.'},
-            { id: 16, categoria: 'Passaportes', nome: 'Passaporte de Frango', preco: 14.00, desc: 'pao, hamburgues, presunto.'},
-            { id: 17, categoria: 'Passaportes', nome: 'Passaporte de Misto', preco: 16.00, desc: 'Laranja ou Limão 400ml.'},
-            { id: 18, categoria: 'Porções', nome: 'Batata Frita Grande', preco: 23.90, desc: 'Pão brioche, 2 smash 90g, cheddar e bacon.'},
-            { id: 19, categoria: 'Porções', nome: 'Batata Frita Pequena', preco: 11.00, desc: 'Frango crocante, alface e maionese verde.'},
-            { id: 20, categoria: 'Porções', nome: 'Batata Frita Minizinha', preco: 6.00, desc: 'Original 350ml gelada.'},
-            { id: 21, categoria: 'Pasteis', nome: 'Pastel de Carne', preco: 6.00, desc: 'Laranja ou Limão 400ml.'},
-            { id: 22, categoria: 'Pasteis', nome: 'Pastel de Frango', preco: 6.00, desc: 'pao, hamburgues, presunto.'},
-            { id: 23, categoria: 'Pasteis', nome: 'Pastel de Queijo', preco: 6.00, desc: 'Laranja ou Limão 400ml.'},
-            { id: 24, categoria: 'Pasteis', nome: 'Pastel de Misto', preco: 6.00, desc: 'pao, hamburgues, presunto.'},
-            { id: 25, categoria: 'Pasteis', nome: 'Pastel de Frango com Queijo', preco: 8.00, desc: 'Laranja ou Limão 400ml.'},
-            { id: 26, categoria: 'Pasteis', nome: 'Pastel de Carne com Queijo', preco: 8.00, desc: 'pao, hamburgues, presunto.'},
-            { id: 27, categoria: 'Bebidas', nome: 'Coca - Cola em lata 350ml', preco: 5.00, desc: 'Laranja ou Limão 400ml.'},
-            { id: 28, categoria: 'Bebidas', nome: 'Caçulinha', preco: 3.00, desc: 'pao, hamburgues, presunto.'},
-            { id: 29, categoria: 'Bebidas', nome: 'Pepsi 1L', preco: 7.00, desc: 'Laranja ou Limão 400ml.'},
-            { id: 30, categoria: 'Bebidas', nome: 'Antartica 1L', preco: 7.00, desc: 'pao, hamburgues, presunto.'},
-            { id: 31, categoria: 'Bebidas', nome: 'Coca - Cola 2L', preco: 12.00, desc: 'Laranja ou Limão 400ml.'},
-            { id: 32, categoria: 'Bebidas', nome: 'Fanta Laranja 2L', preco: 12.00, desc: 'pao, hamburgues, presunto.'},
-            { id: 33, categoria: 'Bebidas', nome: 'Pepsi 2L', preco: 10.00, desc: 'Laranja ou Limão 400ml.'},
-            { id: 34, categoria: 'Bebidas', nome: 'Antartica 2L', preco: 10.00, desc: 'pao, hamburgues, presunto.'},
-            { id: 35, categoria: 'Combos', nome: 'Combo Topadão Individual', preco: 9.00, desc: 'Laranja ou Limão 400ml.'},
-            { id: 36, categoria: 'Combos', nome: 'Combo X-burguer + Batata Mini + Caçulinha', preco: 21.90, desc: 'Laranja ou Limão 400ml.'},
-            { id: 37, categoria: 'Combos', nome: 'Combo X-Tudo + Batata Pequena + Refri em Lata', preco: 32.90, desc: 'Laranja ou Limão 400ml.'},
-            { id: 38, categoria: 'Combos', nome: 'Combo 2 X-Frango + Batata Grande', preco: 52.90, desc: 'Laranja ou Limão 400ml.'},
-    
-        ];
+        // CONFIGURAÇÕES DA LOJA
+const VALOR_MINIMO = 15.00;
 
+const HORARIO_FUNCIONAMENTO = {
+    abre: 19,   // 19:00
+    fecha: 23   // 23:00
+};
+function lojaAberta() {
+    const agora = new Date();
+    const horaAtual = agora.getHours();
+
+    return horaAtual >= HORARIO_FUNCIONAMENTO.abre && horaAtual < HORARIO_FUNCIONAMENTO.fecha;
+}
+        const produtos = [
+    { id: 1, categoria: 'Burgers', nome: 'Topadão Duplo', preco: 52.90, desc: '4 hambúrguer, 4 salsichas, 4 ovos, 4 presunto, 4 queijo, bacon, frango desfiado, calabresa, cheddar, tomate e alface' },
+    { id: 2, categoria: 'Burgers', nome: 'Topadão', preco: 39.90, desc: '2 hambúrguer, 2 salsichas, 2 ovos, 2 presunto, 2 queijo, bacon, frango desfiado, calabresa, cheddar, tomate e alface' },
+    { id: 3, categoria: 'Burgers', nome: 'X - Tudo', preco: 18.90, desc: 'Hambúrguer, salsicha, ovo, presunto, queijo, bacon, calabresa, cheddar, tomate e alface' },
+    { id: 4, categoria: 'Burgers', nome: 'X - bacon', preco: 18.90, desc: 'Hambúrguer, bacon, presunto, queijo, cheddar, tomate e alface' },
+    { id: 5, categoria: 'Burgers', nome: 'Queijo Duplo', preco: 18.00, desc: 'Hambúrguer, 2 presunto, 2 queijo, tomate, alface e cheddar' },
+    { id: 6, categoria: 'Burgers', nome: 'X - Frango', preco: 17.00, desc: 'Hambúrguer, frango desfiado, milho com ervilha, queijo, presunto, tomate, alface e cheddar' },
+    { id: 7, categoria: 'Burgers', nome: 'X - Calabresa', preco: 17.00, desc: 'Hambúrguer, calabresa, presunto, queijo, tomate, alface e cheddar' },
+    { id: 8, categoria: 'Burgers', nome: 'Minuano', preco: 17.00, desc: 'Hambúrguer, ovo, presunto, queijo, tomate, alface e cheddar' },
+    { id: 9, categoria: 'Burgers', nome: 'X - Burguer', preco: 13.00, desc: 'Hambúrguer, presunto, queijo, tomate, alface e cheddar' },
+    { id: 10, categoria: 'Burgers', nome: 'Americano', preco: 11.00, desc: 'Presunto, queijo, ovo, tomate, alface e cheddar' },
+    { id: 11, categoria: 'Burgers', nome: 'Misto Quente', preco: 8.00, desc: 'Presunto, queijo e cheddar' },
+    
+    { id: 12, categoria: 'Burgers Caseiros', nome: 'X - Tudo Caseiro', preco: 22.00, desc: 'Hambúrguer caseiro, salsicha, ovo, presunto, queijo, bacon, calabresa, cheddar, tomate e alface' },
+    { id: 13, categoria: 'Burgers Caseiros', nome: 'X - Bacon Caseiro', preco: 20.00, desc: 'Hambúrguer caseiro, bacon, presunto, queijo, cheddar, tomate e alface' },
+    { id: 14, categoria: 'Burgers Caseiros', nome: 'X - Burguer Caseiro', preco: 16.90, desc: 'Hambúrguer caseiro, presunto, queijo, tomate, alface e cheddar' },
+    
+    { id: 15, categoria: 'Passaportes', nome: 'Passaporte de Carne', preco: 14.00, desc: 'Carne moída temperada, salsicha, tomate, alface, milho, ervilha e molhos especiais' },
+    { id: 16, categoria: 'Passaportes', nome: 'Passaporte de Frango', preco: 14.00, desc: 'Frango desfiado, salsicha, tomate, alface, milho, ervilha e molhos especiais' },
+    { id: 17, categoria: 'Passaportes', nome: 'Passaporte de Misto', preco: 16.00, desc: 'Carne e frango, salsicha, tomate, alface, milho, ervilha e molhos especiais' },
+    
+    { id: 18, categoria: 'Porções', nome: 'Batata Frita Grande', preco: 23.90, desc: 'Batata frita, calabresa e cheddar' },
+    { id: 19, categoria: 'Porções', nome: 'Batata Frita Pequena', preco: 11.00, desc: 'Batata frita e cheddar' },
+    { id: 20, categoria: 'Porções', nome: 'Batata Frita Minizinha', preco: 6.00, desc: 'Batata frita, ketchup e queijo ralado' },
+    
+    { id: 21, categoria: 'Pasteis', nome: 'Pastel de Carne', preco: 6.00, desc: 'Recheio de carne bovina temperada' },
+    { id: 22, categoria: 'Pasteis', nome: 'Pastel de Frango', preco: 6.00, desc: 'Recheio de frango desfiado' },
+    { id: 23, categoria: 'Pasteis', nome: 'Pastel de Queijo', preco: 6.00, desc: 'Recheio de queijo mussarela derretido' },
+    { id: 24, categoria: 'Pasteis', nome: 'Pastel de Misto', preco: 6.00, desc: 'Recheio de presunto e queijo' },
+    { id: 25, categoria: 'Pasteis', nome: 'Pastel de Frango com Queijo', preco: 8.00, desc: 'Frango desfiado com queijo mussarela' },
+    { id: 26, categoria: 'Pasteis', nome: 'Pastel de Carne com Queijo', preco: 8.00, desc: 'Carne moída com queijo mussarela' },
+    
+    { id: 27, categoria: 'Bebidas', nome: 'Coca - Cola em lata 350ml', preco: 5.00, desc: 'Lata 350ml' },
+    { id: 28, categoria: 'Bebidas', nome: 'Caçulinha', preco: 3.00, desc: 'Refrigerante caçulinha' },
+    { id: 29, categoria: 'Bebidas', nome: 'Pepsi 1L', preco: 7.00, desc: 'Garrafa 1 Litro' },
+    { id: 30, categoria: 'Bebidas', nome: 'Antartica 1L', preco: 7.00, desc: 'Guaraná Antarctica 1 Litro' },
+    { id: 31, categoria: 'Bebidas', nome: 'Coca - Cola 2L', preco: 12.00, desc: 'Garrafa 2 Litros' },
+    { id: 32, categoria: 'Bebidas', nome: 'Fanta Laranja 2L', preco: 12.00, desc: 'Garrafa 2 Litros' },
+    { id: 33, categoria: 'Bebidas', nome: 'Pepsi 2L', preco: 10.00, desc: 'Garrafa 2 Litros' },
+    { id: 34, categoria: 'Bebidas', nome: 'Antartica 2L', preco: 10.00, desc: 'Guaraná Antarctica 2 Litros' },
+    
+    { id: 35, categoria: 'Combos', nome: 'Combo Topadão Individual', preco: 49.90, desc: 'Acompanha topadão normal, batata mini e refrigerante pequeno' },
+    { id: 36, categoria: 'Combos', nome: 'Combo X-burguer + Batata Mini + Caçulinha', preco: 21.90, desc: 'X-burguer padrão, batata mini e um refrigerante caçulinha' },
+    { id: 37, categoria: 'Combos', nome: 'Combo X-Tudo + Batata Pequena + Refri em Lata', preco: 32.90, desc: 'X-Tudo completo, batata frita pequena e refri em lata 350ml' },
+    { id: 38, categoria: 'Combos', nome: 'Combo 2 X-Frango + Batata Grande', preco: 52.90, desc: '2 sanduíches X-Frango e uma porção de batata frita grande' },
+];
+    
         let carrinho = [];
 
         function filterMenu(cat, btn) {
@@ -321,12 +364,8 @@
             const overlay = document.getElementById('cart-overlay');
             overlay.style.display = overlay.style.display === 'block' ? 'none' : 'block';
         }
-        function enviarWhatsApp()
-        if (!lojaAberta()) {
-    alert("Estamos fechados no momento. Funcionamos das 19h às 23h.");
-    return;
-}
-        {
+
+        function enviarWhatsApp() {
             const nome = document.getElementById('nome').value;
             const endereco = document.getElementById('endereco').value;
             const contato = document.getElementById('contato').value;
@@ -346,19 +385,16 @@
             carrinho.forEach(i => {
                 msg += `✅ ${i.qtd}x ${i.nome} - R$ ${(i.preco * i.qtd).toFixed(2)}\n`;
             });
+
             const total = carrinho.reduce((sum, item) => sum + (item.preco * item.qtd), 0);
             msg += `\n*TOTAL: R$ ${total.toFixed(2)}*`;
             msg += `\n*Pagamento:* ${pag}`;
-            if (total < VALOR_MINIMO) {
-    alert(`Pedido mínimo é de R$ ${VALOR_MINIMO.toFixed(2).replace('.',',')}`);
-    return;
-}
+
             const numero = "5582991675574"; // COLOQUE SEU NÚMERO AQUI
             window.open(`https://wa.me/${numero}?text=${encodeURIComponent(msg)}`);
         }
 
         renderizar();
-
         function atualizarStatusLoja() {
     const statusDiv = document.getElementById("status-loja");
 
@@ -372,10 +408,7 @@
         statusDiv.style.color = "#fff";
     }
 }
-
 atualizarStatusLoja();
-        
     </script>
 </body>
 </html>
-
